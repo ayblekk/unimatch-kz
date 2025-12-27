@@ -1,0 +1,159 @@
+{
+  "specialties": [
+    {
+      "id": "1",
+      "code": "B057",
+      "nameRu": "Информационные технологии",
+      "nameKz": "Ақпараттық технологиялар",
+      "universityRu": "Казахский национальный университет им. аль-Фараби",
+      "universityKz": "Әл-Фараби атындағы Қазақ ұлттық университеті",
+      "city": "Almaty",
+      "type": "national",
+      "threshold2024": 118,
+      "grants2024": 150,
+      "profileSubjects": ["Математика", "Информатика"]
+    },
+    {
+      "id": "2",
+      "code": "B058",
+      "nameRu": "Программная инженерия",
+      "nameKz": "Бағдарламалық инженерия",
+      "universityRu": "Международный университет информационных технологий (МУИТ)",
+      "universityKz": "Халықаралық ақпараттық технологиялар университеті",
+      "city": "Almaty",
+      "type": "private",
+      "threshold2024": 112,
+      "grants2024": 120,
+      "profileSubjects": ["Математика", "Информатика"]
+    },
+    {
+      "id": "3",
+      "code": "B059",
+      "nameRu": "Компьютерные науки",
+      "nameKz": "Компьютерлік ғылымдар",
+      "universityRu": "Назарбаев Университет",
+      "universityKz": "Назарбаев Университеті",
+      "city": "Astana",
+      "type": "national",
+      "threshold2024": 130,
+      "grants2024": 80,
+      "profileSubjects": ["Математика", "Информатика"]
+    },
+    {
+      "id": "4",
+      "code": "B060",
+      "nameRu": "Общая медицина",
+      "nameKz": "Жалпы медицина",
+      "universityRu": "Казахский национальный медицинский университет им. С.Д. Асфендиярова",
+      "universityKz": "С.Д. Асфендияров атындағы Қазақ ұлттық медицина университеті",
+      "city": "Almaty",
+      "type": "national",
+      "threshold2024": 128,
+      "grants2024": 250,
+      "profileSubjects": ["Биология", "Химия"]
+    },
+    {
+      "id": "5",
+      "code": "B061",
+      "nameRu": "Стоматология",
+      "nameKz": "Стоматология",
+      "universityRu": "Казахский национальный медицинский университет им. С.Д. Асфендиярова",
+      "universityKz": "С.Д. Асфендияров атындағы Қазақ ұлттық медицина университеті",
+      "city": "Almaty",
+      "type": "national",
+      "threshold2024": 126,
+      "grants2024": 100,
+      "profileSubjects": ["Биология", "Химия"]
+    },
+    {
+      "id": "6",
+      "code": "B062",
+      "nameRu": "Фармация",
+      "nameKz": "Фармация",
+      "universityRu": "Южно-Казахстанская медицинская академия",
+      "universityKz": "Оңтүстік Қазақстан медицина академиясы",
+      "city": "Shymkent",
+      "type": "state",
+      "threshold2024": 115,
+      "grants2024": 80,
+      "profileSubjects": ["Биология", "Химия"]
+    },
+    {
+      "id": "7",
+      "code": "B049",
+      "nameRu": "Юриспруденция",
+      "nameKz": "Құқықтану",
+      "universityRu": "Евразийский национальный университет им. Л.Н. Гумилева",
+      "universityKz": "Л.Н. Гумилев атындағы Еуразия ұлттық университеті",
+      "city": "Astana",
+      "type": "national",
+      "threshold2024": 125,
+      "grants2024": 120,
+      "profileSubjects": ["История", "Человек и общество"]
+    },
+    {
+      "id": "8",
+      "code": "B050",
+      "nameRu": "Международное право",
+      "nameKz": "Халықаралық құқық",
+      "universityRu": "Казахский национальный университет им. аль-Фараби",
+      "universityKz": "Әл-Фараби атындағы Қазақ ұлттық университеті",
+      "city": "Almaty",
+      "type": "national",
+      "threshold2024": 127,
+      "grants2024": 60,
+      "profileSubjects": ["История", "Человек и общество"]
+    },
+    {
+      "id": "9",
+      "code": "B051",
+      "nameRu": "Правоохранительная деятельность",
+      "nameKz": "Құқық қорғау қызметі",
+      "universityRu": "Академия правоохранительных органов",
+      "universityKz": "Құқық қорғау органдары академиясы",
+      "city": "Astana",
+      "type": "state",
+      "threshold2024": 110,
+      "grants2024": 200,
+      "profileSubjects": ["История", "Человек и общество"]
+    },
+    {
+      "id": "10",
+      "code": "B063",
+      "nameRu": "Сестринское дело",
+      "nameKz": "Мейіргерлік іс",
+      "universityRu": "Медицинский университет Астана",
+      "universityKz": "Астана медицина университеті",
+      "city": "Astana",
+      "type": "state",
+      "threshold2024": 105,
+      "grants2024": 150,
+      "profileSubjects": ["Биология", "Химия"]
+    }
+  ],
+  "cities": [
+    { "id": "all", "nameRu": "Все города", "nameKz": "Барлық қалалар" },
+    { "id": "Almaty", "nameRu": "Алматы", "nameKz": "Алматы" },
+    { "id": "Astana", "nameRu": "Астана", "nameKz": "Астана" },
+    { "id": "Shymkent", "nameRu": "Шымкент", "nameKz": "Шымкент" }
+  ],
+  "universityTypes": [
+    { "id": "all", "nameRu": "Все типы", "nameKz": "Барлық түрлері" },
+    { "id": "national", "nameRu": "Национальный", "nameKz": "Ұлттық" },
+    { "id": "state", "nameRu": "Государственный", "nameKz": "Мемлекеттік" },
+    { "id": "private", "nameRu": "Частный", "nameKz": "Жеке" }
+  ],
+  "profileSubjects": [
+    { "id": "math", "nameRu": "Математика", "nameKz": "Математика" },
+    { "id": "physics", "nameRu": "Физика", "nameKz": "Физика" },
+    { "id": "informatics", "nameRu": "Информатика", "nameKz": "Информатика" },
+    { "id": "biology", "nameRu": "Биология", "nameKz": "Биология" },
+    { "id": "chemistry", "nameRu": "Химия", "nameKz": "Химия" },
+    { "id": "history", "nameRu": "История", "nameKz": "Тарих" },
+    { "id": "society", "nameRu": "Человек и общество", "nameKz": "Адам және қоғам" },
+    { "id": "geography", "nameRu": "География", "nameKz": "География" },
+    { "id": "creative", "nameRu": "Творческий экзамен", "nameKz": "Шығармашылық емтихан" }
+  ]
+}
+
+

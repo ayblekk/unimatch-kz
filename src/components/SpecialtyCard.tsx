@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Specialty } from '@/data/mockData';
-import { Progress } from '@/components/ui/progress';
 
 interface SpecialtyCardProps {
   specialty: Specialty;
@@ -19,48 +18,23 @@ const SpecialtyCard = ({ specialty, userScore, index }: SpecialtyCardProps) => {
     language === 'ru' ? specialty.universityRu : specialty.universityKz;
 
   const threshold = specialty.threshold2024;
-  const scoreDiff = userScore - threshold;
   const progressPercent = Math.min(Math.max((userScore / threshold) * 100, 0), 100);
 
-  const getChanceLevel = () => {
-    if (scoreDiff >= 5) return 'high';
-    if (scoreDiff >= -5) return 'medium';
-    return 'low';
-  };
-
-  const chanceLevel = getChanceLevel();
+  // Если балл пользователя >= проходного балла - высокий шанс, иначе - мало шансов
+  const isHighChance = userScore >= threshold;
 
   const getChanceLabel = () => {
-    switch (chanceLevel) {
-      case 'high':
-        return t.highChance;
-      case 'medium':
-        return t.mediumChance;
-      case 'low':
-        return t.lowChance;
-    }
+    return isHighChance ? t.highChance : t.lowChance;
   };
 
   const getChanceClass = () => {
-    switch (chanceLevel) {
-      case 'high':
-        return 'chance-high';
-      case 'medium':
-        return 'chance-medium';
-      case 'low':
-        return 'chance-low';
-    }
+    return isHighChance 
+      ? 'bg-green-100 text-green-700 border-green-300 dark:bg-green-900/30 dark:text-green-400 dark:border-green-700'
+      : 'bg-red-100 text-red-700 border-red-300 dark:bg-red-900/30 dark:text-red-400 dark:border-red-700';
   };
 
   const getProgressColor = () => {
-    switch (chanceLevel) {
-      case 'high':
-        return 'bg-success';
-      case 'medium':
-        return 'bg-warning';
-      case 'low':
-        return 'bg-destructive';
-    }
+    return isHighChance ? 'bg-green-500' : 'bg-red-500';
   };
 
   return (
@@ -86,7 +60,7 @@ const SpecialtyCard = ({ specialty, userScore, index }: SpecialtyCardProps) => {
           </div>
         </div>
         <span
-          className={`px-3 py-1 rounded-full text-xs font-medium border ${getChanceClass()}`}
+          className={`px-3 py-1 rounded-full text-xs font-semibold border ${getChanceClass()}`}
         >
           {getChanceLabel()}
         </span>
@@ -122,10 +96,10 @@ const SpecialtyCard = ({ specialty, userScore, index }: SpecialtyCardProps) => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: index * 0.1 + 0.5, type: 'spring' }}
-              className="absolute -right-1 -top-1 w-4 h-4 rounded-full bg-success flex items-center justify-center"
+              className="absolute -right-1 -top-1 w-4 h-4 rounded-full bg-green-500 flex items-center justify-center"
             >
               <svg
-                className="w-2.5 h-2.5 text-success-foreground"
+                className="w-2.5 h-2.5 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

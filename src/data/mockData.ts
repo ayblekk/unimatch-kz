@@ -1,3 +1,5 @@
+import grantsData from './grants.json';
+
 export interface Specialty {
   id: string;
   code: string;
@@ -12,164 +14,11 @@ export interface Specialty {
   profileSubjects: [string, string];
 }
 
-export const specialties: Specialty[] = [
-  {
-    id: '1',
-    code: 'B057',
-    nameRu: 'Информационные технологии',
-    nameKz: 'Ақпараттық технологиялар',
-    universityRu: 'Казахский национальный университет им. аль-Фараби',
-    universityKz: 'Әл-Фараби атындағы Қазақ ұлттық университеті',
-    city: 'Almaty',
-    type: 'national',
-    threshold2024: 118,
-    grants2024: 150,
-    profileSubjects: ['Математика', 'Информатика'],
-  },
-  {
-    id: '2',
-    code: 'B060',
-    nameRu: 'Общая медицина',
-    nameKz: 'Жалпы медицина',
-    universityRu: 'Казахский национальный медицинский университет',
-    universityKz: 'Қазақ ұлттық медицина университеті',
-    city: 'Almaty',
-    type: 'national',
-    threshold2024: 128,
-    grants2024: 200,
-    profileSubjects: ['Биология', 'Химия'],
-  },
-  {
-    id: '3',
-    code: 'B049',
-    nameRu: 'Юриспруденция',
-    nameKz: 'Құқықтану',
-    universityRu: 'Евразийский национальный университет им. Л.Н. Гумилева',
-    universityKz: 'Л.Н. Гумилев атындағы Еуразия ұлттық университеті',
-    city: 'Astana',
-    type: 'national',
-    threshold2024: 125,
-    grants2024: 80,
-    profileSubjects: ['История', 'Человек и общество'],
-  },
-  {
-    id: '4',
-    code: 'B044',
-    nameRu: 'Экономика',
-    nameKz: 'Экономика',
-    universityRu: 'Назарбаев Университет',
-    universityKz: 'Назарбаев Университеті',
-    city: 'Astana',
-    type: 'national',
-    threshold2024: 130,
-    grants2024: 50,
-    profileSubjects: ['Математика', 'Человек и общество'],
-  },
-  {
-    id: '5',
-    code: 'B073',
-    nameRu: 'Архитектура',
-    nameKz: 'Сәулет',
-    universityRu: 'Казахская головная архитектурно-строительная академия',
-    universityKz: 'Қазақ бас сәулет-құрылыс академиясы',
-    city: 'Almaty',
-    type: 'state',
-    threshold2024: 105,
-    grants2024: 60,
-    profileSubjects: ['Математика', 'Творческий экзамен'],
-  },
-  {
-    id: '6',
-    code: 'B058',
-    nameRu: 'Программная инженерия',
-    nameKz: 'Бағдарламалық инженерия',
-    universityRu: 'Международный университет информационных технологий',
-    universityKz: 'Халықаралық ақпараттық технологиялар университеті',
-    city: 'Almaty',
-    type: 'private',
-    threshold2024: 110,
-    grants2024: 100,
-    profileSubjects: ['Математика', 'Информатика'],
-  },
-  {
-    id: '7',
-    code: 'B014',
-    nameRu: 'Педагогика и психология',
-    nameKz: 'Педагогика және психология',
-    universityRu: 'Казахский национальный педагогический университет',
-    universityKz: 'Қазақ ұлттық педагогикалық университеті',
-    city: 'Almaty',
-    type: 'state',
-    threshold2024: 95,
-    grants2024: 120,
-    profileSubjects: ['Биология', 'Человек и общество'],
-  },
-  {
-    id: '8',
-    code: 'B061',
-    nameRu: 'Стоматология',
-    nameKz: 'Стоматология',
-    universityRu: 'Южно-Казахстанская медицинская академия',
-    universityKz: 'Оңтүстік Қазақстан медицина академиясы',
-    city: 'Shymkent',
-    type: 'state',
-    threshold2024: 122,
-    grants2024: 40,
-    profileSubjects: ['Биология', 'Химия'],
-  },
-  {
-    id: '9',
-    code: 'B042',
-    nameRu: 'Менеджмент',
-    nameKz: 'Менеджмент',
-    universityRu: 'КИМЭП Университет',
-    universityKz: 'КИМЭП Университеті',
-    city: 'Almaty',
-    type: 'private',
-    threshold2024: 108,
-    grants2024: 30,
-    profileSubjects: ['Математика', 'Человек и общество'],
-  },
-  {
-    id: '10',
-    code: 'B078',
-    nameRu: 'Нефтегазовое дело',
-    nameKz: 'Мұнай-газ ісі',
-    universityRu: 'Казахстанско-Британский технический университет',
-    universityKz: 'Қазақстан-Британ техникалық университеті',
-    city: 'Almaty',
-    type: 'private',
-    threshold2024: 115,
-    grants2024: 45,
-    profileSubjects: ['Математика', 'Физика'],
-  },
-];
-
-export const cities = [
-  { id: 'all', nameRu: 'Все города', nameKz: 'Барлық қалалар' },
-  { id: 'Almaty', nameRu: 'Алматы', nameKz: 'Алматы' },
-  { id: 'Astana', nameRu: 'Астана', nameKz: 'Астана' },
-  { id: 'Shymkent', nameRu: 'Шымкент', nameKz: 'Шымкент' },
-];
-
-export const universityTypes = [
-  { id: 'all', nameRu: 'Все типы', nameKz: 'Барлық түрлері' },
-  { id: 'national', nameRu: 'Национальный', nameKz: 'Ұлттық' },
-  { id: 'state', nameRu: 'Государственный', nameKz: 'Мемлекеттік' },
-  { id: 'private', nameRu: 'Частный', nameKz: 'Жеке' },
-];
-
-export const profileSubjects = [
-  { id: 'math', nameRu: 'Математика', nameKz: 'Математика' },
-  { id: 'physics', nameRu: 'Физика', nameKz: 'Физика' },
-  { id: 'informatics', nameRu: 'Информатика', nameKz: 'Информатика' },
-  { id: 'biology', nameRu: 'Биология', nameKz: 'Биология' },
-  { id: 'chemistry', nameRu: 'Химия', nameKz: 'Химия' },
-  { id: 'history', nameRu: 'История', nameKz: 'Тарих' },
-  { id: 'society', nameRu: 'Человек и общество', nameKz: 'Адам және қоғам' },
-  { id: 'geography', nameRu: 'География', nameKz: 'География' },
-  { id: 'creative', nameRu: 'Творческий экзамен', nameKz: 'Шығармашылық емтихан' },
-];
+// Загружаем данные из JSON файла
+export const specialties: Specialty[] = grantsData.specialties as Specialty[];
+export const cities = grantsData.cities;
+export const universityTypes = grantsData.universityTypes;
+export const profileSubjects = grantsData.profileSubjects;
 
 export type Language = 'ru' | 'kz';
 
@@ -191,8 +40,7 @@ export const translations = {
     threshold: 'Проходной балл',
     grants: 'грантов',
     highChance: 'Высокий шанс',
-    mediumChance: 'Средний шанс',
-    lowChance: 'Низкий шанс',
+    lowChance: 'Мало шансов',
     noResults: 'Специальности не найдены',
     noResultsDescription: 'Попробуйте изменить параметры поиска или выбрать другие предметы',
     yourScore: 'Ваш балл',
@@ -214,8 +62,7 @@ export const translations = {
     threshold: 'Өту балы',
     grants: 'грант',
     highChance: 'Жоғары мүмкіндік',
-    mediumChance: 'Орташа мүмкіндік',
-    lowChance: 'Төмен мүмкіндік',
+    lowChance: 'Аз мүмкіндік',
     noResults: 'Мамандықтар табылмады',
     noResultsDescription: 'Іздеу параметрлерін өзгертіп көріңіз немесе басқа пәндерді таңдаңыз',
     yourScore: 'Сіздің балыңыз',
