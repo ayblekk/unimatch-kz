@@ -1,7 +1,13 @@
-import { motion } from 'framer-motion';
-import { Search, ChevronDown } from 'lucide-react';
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, ChevronDown, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { profileSubjects } from '@/data/mockData';
+import { 
+  getPrimarySubjects, 
+  getSecondarySubjects, 
+  isCreativeExam,
+  getSpecialtiesHint 
+} from '@/data/subjectCombinations';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import {
@@ -35,13 +41,25 @@ const HeroCard = ({
 }: HeroCardProps) => {
   const { language, t } = useLanguage();
 
-  const getSubjectName = (subject: { nameRu: string; nameKz: string }) => {
-    return language === 'ru' ? subject.nameRu : subject.nameKz;
+  const primarySubjects = getPrimarySubjects();
+  const secondarySubjects = getSecondarySubjects(subject1);
+  const isCreative = isCreativeExam(subject1);
+  const specialtiesHint = getSpecialtiesHint(subject1, subject2, language);
+
+  // Reset subject2 when subject1 changes
+  useEffect(() => {
+    if (isCreative) {
+      setSubject2('none');
+    } else {
+      setSubject2('');
+    }
+  }, [subject1, isCreative, setSubject2]);
+
+  const getSubjectDisplayName = (nameRu: string, nameKz: string) => {
+    return language === 'ru' ? nameRu : nameKz;
   };
 
-  const filteredSubjects2 = profileSubjects.filter(
-    (s) => s.nameRu !== subject1
-  );
+  const canSearch = subject1 && (isCreative || subject2);
 
   return (
     <motion.div
@@ -104,6 +122,7 @@ const HeroCard = ({
 
         {/* Subject Selectors */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Subject 1 - Primary */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -113,23 +132,29 @@ const HeroCard = ({
               {t.subject1}
             </label>
             <Select value={subject1} onValueChange={setSubject1}>
-              <SelectTrigger className="w-full h-12 rounded-xl bg-secondary/50 border-border/50">
+              <SelectTrigger className="w-full h-12 rounded-xl bg-secondary/50 border-border/50 hover:bg-secondary/70 transition-colors">
                 <SelectValue placeholder={t.selectSubject} />
               </SelectTrigger>
-              <SelectContent className="bg-popover rounded-xl border-border">
-                {profileSubjects.map((subject) => (
+              <SelectContent className="bg-popover rounded-xl border-border max-h-[300px]">
+                {primarySubjects.map((subject) => (
                   <SelectItem
-                    key={subject.id}
+                    key={subject.nameRu}
                     value={subject.nameRu}
-                    className="rounded-lg"
+                    className="rounded-lg cursor-pointer"
                   >
-                    {getSubjectName(subject)}
+                    <div className="flex items-center gap-2">
+                      {subject.nameRu === "Творческий экзамен" && (
+                        <Sparkles className="w-4 h-4 text-primary" />
+                      )}
+                      {getSubjectDisplayName(subject.nameRu, subject.nameKz)}
+                    </div>
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </motion.div>
 
+          {/* Subject 2 - Dependent */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -138,24 +163,93 @@ const HeroCard = ({
             <label className="block text-sm font-medium text-foreground mb-2">
               {t.subject2}
             </label>
-            <Select value={subject2} onValueChange={setSubject2}>
-              <SelectTrigger className="w-full h-12 rounded-xl bg-secondary/50 border-border/50">
-                <SelectValue placeholder={t.selectSubject} />
-              </SelectTrigger>
-              <SelectContent className="bg-popover rounded-xl border-border">
-                {filteredSubjects2.map((subject) => (
-                  <SelectItem
-                    key={subject.id}
-                    value={subject.nameRu}
-                    className="rounded-lg"
+            <AnimatePresence mode="wait">
+              {isCreative ? (
+                <motion.div
+                  key="creative"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="w-full h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center gap-2 text-primary font-medium"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  {language === 'ru' ? 'Практический экзамен' : 'Практикалық емтихан'}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="select"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                >
+                  <Select 
+                    value={subject2} 
+                    onValueChange={setSubject2}
+                    disabled={!subject1}
                   >
-                    {getSubjectName(subject)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+                    <SelectTrigger 
+                      className={`w-full h-12 rounded-xl border-border/50 transition-all ${
+                        !subject1 
+                          ? 'bg-muted/30 cursor-not-allowed opacity-60' 
+                          : 'bg-secondary/50 hover:bg-secondary/70'
+                      }`}
+                    >
+                      <SelectValue 
+                        placeholder={
+                          !subject1 
+                            ? (language === 'ru' ? 'Сначала выберите предмет 1' : 'Алдымен 1-пәнді таңдаңыз')
+                            : t.selectSubject
+                        } 
+                      />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover rounded-xl border-border">
+                      {secondarySubjects.map((subject) => (
+                        <SelectItem
+                          key={subject.nameRu}
+                          value={subject.nameRu}
+                          className="rounded-lg cursor-pointer"
+                        >
+                          <div className="flex flex-col">
+                            <span>{getSubjectDisplayName(subject.nameRu, subject.nameKz)}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {(language === 'ru' ? subject.specialties : subject.specialtiesKz).join(', ')}
+                            </span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
+
+        {/* Specialties Hint */}
+        <AnimatePresence>
+          {specialtiesHint.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="flex flex-wrap gap-2 items-center justify-center">
+                <span className="text-xs text-muted-foreground">
+                  {language === 'ru' ? 'Доступные направления:' : 'Қол жетімді бағыттар:'}
+                </span>
+                {specialtiesHint.map((specialty, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary font-medium"
+                  >
+                    {specialty}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Search Button */}
         <motion.div
@@ -165,7 +259,7 @@ const HeroCard = ({
         >
           <Button
             onClick={onSearch}
-            disabled={!subject1 || !subject2 || isLoading}
+            disabled={!canSearch || isLoading}
             className="w-full h-14 rounded-2xl text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground pulse-animation disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
