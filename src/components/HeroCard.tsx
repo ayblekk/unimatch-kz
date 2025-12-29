@@ -73,17 +73,21 @@ const HeroCard = ({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-2xl md:text-3xl font-bold text-foreground mb-2"
+          className="text-2xl md:text-4xl font-bold text-foreground mb-3"
         >
-          {t.subtitle}
+          {language === 'ru' 
+            ? 'Твой путь к гранту начинается здесь' 
+            : 'Грантқа жолың осы жерден басталады'}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="text-muted-foreground text-sm md:text-base max-w-md mx-auto"
+          className="text-muted-foreground text-sm md:text-lg max-w-lg mx-auto"
         >
-          {t.description}
+          {language === 'ru'
+            ? 'Введите ваш балл ЕНТ и выберите профильные предметы — мы покажем, куда вы можете поступить на грант'
+            : 'ҰБТ балыңызды енгізіп, бейіндік пәндерді таңдаңыз — грантқа қайда түсе алатыныңызды көрсетеміз'}
         </motion.p>
       </div>
 

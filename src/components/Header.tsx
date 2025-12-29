@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Moon, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
+import logo from '@/assets/logo.png';
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -14,10 +15,12 @@ const Header = () => {
       className="sticky top-0 z-50 glass-card border-b border-border/50"
     >
       <div className="container flex items-center justify-between h-16 px-4">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground">
-            <GraduationCap className="w-5 h-5" />
-          </div>
+        <div className="flex items-center gap-3">
+          <img 
+            src={logo} 
+            alt="UniSelector KZ" 
+            className="h-10 w-auto object-contain"
+          />
           <span className="text-lg font-bold text-foreground">{t.title}</span>
         </div>
 
