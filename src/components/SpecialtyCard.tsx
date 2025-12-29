@@ -43,7 +43,7 @@ const SpecialtyCard = ({ specialty, userScore, index }: SpecialtyCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="bg-card rounded-2xl p-5 border border-border/50 shadow-sm hover:shadow-lg transition-shadow duration-300"
+      className="bg-card rounded-2xl p-6 border border-border/60 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.1)] transition-all duration-200"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">

@@ -66,7 +66,7 @@ const HeroCard = ({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="glass-card rounded-3xl p-6 md:p-8 mx-4 md:mx-0"
+      className="bg-card rounded-3xl p-6 md:p-10 mx-4 md:mx-0 border border-border/60 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]"
     >
       <div className="text-center mb-8">
         <motion.h1
@@ -136,7 +136,7 @@ const HeroCard = ({
               {t.subject1}
             </label>
             <Select value={subject1} onValueChange={setSubject1}>
-              <SelectTrigger className="w-full h-12 rounded-xl bg-secondary/50 border-border/50 hover:bg-secondary/70 transition-colors">
+              <SelectTrigger className="w-full h-12 rounded-xl bg-secondary/50 border-border/60 hover:bg-secondary/70 focus:ring-2 focus:ring-ring transition-all duration-200">
                 <SelectValue placeholder={t.selectSubject} />
               </SelectTrigger>
               <SelectContent className="bg-popover rounded-xl border-border max-h-[300px]">
@@ -192,10 +192,10 @@ const HeroCard = ({
                     disabled={!subject1}
                   >
                     <SelectTrigger 
-                      className={`w-full h-12 rounded-xl border-border/50 transition-all ${
+                      className={`w-full h-12 rounded-xl border-border/60 transition-all duration-200 ${
                         !subject1 
                           ? 'bg-muted/30 cursor-not-allowed opacity-60' 
-                          : 'bg-secondary/50 hover:bg-secondary/70'
+                          : 'bg-secondary/50 hover:bg-secondary/70 focus:ring-2 focus:ring-ring'
                       }`}
                     >
                       <SelectValue 
@@ -264,7 +264,7 @@ const HeroCard = ({
           <Button
             onClick={onSearch}
             disabled={!canSearch || isLoading}
-            className="w-full h-14 rounded-2xl text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground pulse-animation disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full h-14 rounded-2xl text-lg font-semibold bg-gradient-to-r from-primary to-primary/90 hover:from-primary/95 hover:to-primary/85 text-primary-foreground shadow-[0_4px_14px_0_hsl(var(--primary)/0.3)] hover:shadow-[0_6px_20px_0_hsl(var(--primary)/0.4)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <motion.div

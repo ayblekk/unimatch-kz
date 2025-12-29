@@ -32,7 +32,7 @@ const UniversityCard = ({ university, index }: UniversityCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="glass-card rounded-2xl overflow-hidden flex flex-col transition-shadow duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)]"
+      className="bg-card rounded-2xl overflow-hidden flex flex-col border border-border/60 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] transition-all duration-200 hover:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.1)]"
     >
       {/* Cover Image */}
       <div className="aspect-video w-full">
@@ -48,9 +48,9 @@ const UniversityCard = ({ university, index }: UniversityCardProps) => {
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col gap-4 flex-1">
+      <div className="p-6 flex flex-col gap-4 flex-1">
         {/* Title */}
-        <h3 className="font-semibold text-foreground text-base leading-tight line-clamp-2">
+        <h3 className="font-semibold text-card-foreground text-base leading-tight line-clamp-2">
           {language === 'ru' ? university.nameRu : university.nameKz}
         </h3>
 
@@ -82,7 +82,7 @@ const UniversityCard = ({ university, index }: UniversityCardProps) => {
         </div>
 
         {/* Button */}
-        <Button variant="outline" className="w-full mt-auto">
+        <Button variant="outline" className="w-full mt-auto transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary">
           {t.learnMore}
         </Button>
       </div>

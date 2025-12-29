@@ -24,8 +24,8 @@ const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass-card border-b border-border/30 shadow-sm' 
-          : 'glass-card border-b border-border/50'
+          ? 'bg-card/95 backdrop-blur-md border-b border-border/60 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]' 
+          : 'bg-card/80 backdrop-blur-sm border-b border-border/40'
       }`}
     >
       <motion.div 
