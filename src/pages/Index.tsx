@@ -1,7 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { specialties, Specialty } from '@/data/mockData';
+import { toast } from '@/hooks/use-toast';
+import { isCreativeExam } from '@/data/subjectCombinations';
 import Header from '@/components/Header';
 import HeroCard from '@/components/HeroCard';
 import FilterBar from '@/components/FilterBar';
@@ -9,6 +11,7 @@ import ResultsSection from '@/components/ResultsSection';
 import UniversitiesSection from '@/components/UniversitiesSection';
 
 const IndexContent = () => {
+  const { language } = useLanguage();
   const [score, setScore] = useState(100);
   const [subject1, setSubject1] = useState('');
   const [subject2, setSubject2] = useState('');
@@ -17,18 +20,45 @@ const IndexContent = () => {
   const [results, setResults] = useState<Specialty[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = useCallback(() => {
+    const isCreative = isCreativeExam(subject1);
+    
+    // Debug logging
+    console.log('🔍 Search triggered:', { 
+      score, 
+      subject1, 
+      subject2, 
+      isCreative,
+      selectedCity, 
+      selectedType 
+    });
+
+    // Validation
+    if (!subject1 || (!isCreative && !subject2)) {
+      console.log('❌ Validation failed: missing subjects');
+      toast({
+        title: language === 'ru' ? 'Ошибка' : 'Қате',
+        description: language === 'ru' 
+          ? 'Пожалуйста, введите балл и выберите предметы' 
+          : 'Балды енгізіп, пәндерді таңдаңыз',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsLoading(true);
     setHasSearched(true);
 
     // Simulate API call
     setTimeout(() => {
       const filtered = specialties.filter((specialty) => {
-        // Check if subjects match
-        const subjectsMatch =
-          specialty.profileSubjects.includes(subject1) &&
-          specialty.profileSubjects.includes(subject2);
+        // Check if subjects match - for creative exams, only check subject1
+        const subjectsMatch = isCreative
+          ? specialty.profileSubjects.includes(subject1)
+          : specialty.profileSubjects.includes(subject1) &&
+            specialty.profileSubjects.includes(subject2);
 
         // Check city filter
         const cityMatch =
@@ -44,10 +74,17 @@ const IndexContent = () => {
       // Sort by threshold (higher threshold = harder to get in)
       filtered.sort((a, b) => b.threshold2024 - a.threshold2024);
 
+      console.log('✅ Search results:', { count: filtered.length, results: filtered });
+
       setResults(filtered);
       setIsLoading(false);
+
+      // Scroll to results after search
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }, 800);
-  }, [subject1, subject2, selectedCity, selectedType]);
+  }, [score, subject1, subject2, selectedCity, selectedType, language]);
 
   // Re-filter when filters change (if already searched)
   const handleCityChange = (city: string) => {
@@ -111,7 +148,7 @@ const IndexContent = () => {
 
       <UniversitiesSection />
 
-      <main className="container max-w-4xl mx-auto px-4 space-y-8">
+      <main ref={resultsRef} className="container max-w-4xl mx-auto px-4 space-y-8">
         {hasSearched && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
