@@ -6,67 +6,71 @@
 
 @layer base {
   :root {
-    --background: 210 40% 99%;
-    --foreground: 222 47% 11%;
+    /* Мягкий серовато-белый фон вместо чистого белого */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
 
+    /* Карточки — чистый белый для контраста на сером фоне */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 215 25% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 215 25% 17%;
 
-    --primary: 217 91% 60%;
+    /* Приглушённый индиго вместо яркого синего */
+    --primary: 239 84% 67%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 98%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 210 40% 96%;
+    --muted: 210 20% 94%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 210 20% 94%;
+    --accent-foreground: 215 25% 17%;
 
-    --success: 142 71% 45%;
+    --success: 142 55% 42%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
+    --warning: 38 80% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    /* Мягкие границы */
+    --border: 214 25% 88%;
+    --input: 214 25% 88%;
+    --ring: 239 60% 80%;
 
-    --radius: 1.5rem;
+    --radius: 1rem;
 
     /* Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 100% / 0.3;
-    --glass-shadow: 217 91% 60% / 0.1;
+    --glass-bg: 0 0% 100% / 0.75;
+    --glass-border: 214 25% 88% / 0.6;
+    --glass-shadow: 239 84% 67% / 0.08;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(230 91% 65%));
-    --gradient-hero: linear-gradient(180deg, hsl(210 40% 99%) 0%, hsl(217 91% 60% / 0.05) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    /* Градиенты — мягкий индиго */
+    --gradient-primary: linear-gradient(135deg, hsl(239 84% 67%), hsl(250 80% 72%));
+    --gradient-hero: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(239 84% 67% / 0.03) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px hsl(222 47% 11% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.08), 0 2px 4px -2px hsl(222 47% 11% / 0.04);
-    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.08), 0 4px 6px -4px hsl(222 47% 11% / 0.04);
-    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.06);
-    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.2);
+    /* Тени — очень мягкие */
+    --shadow-sm: 0 1px 2px hsl(215 25% 17% / 0.04);
+    --shadow-md: 0 2px 8px -2px hsl(215 25% 17% / 0.06), 0 1px 3px -1px hsl(215 25% 17% / 0.03);
+    --shadow-lg: 0 2px 15px -3px hsl(215 25% 17% / 0.07), 0 4px 6px -4px hsl(215 25% 17% / 0.03);
+    --shadow-xl: 0 4px 20px -5px hsl(215 25% 17% / 0.08), 0 6px 10px -6px hsl(215 25% 17% / 0.04);
+    --shadow-glow: 0 0 30px hsl(239 84% 67% / 0.12);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-background: 210 20% 97%;
+    --sidebar-foreground: 215 25% 27%;
+    --sidebar-primary: 239 84% 67%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 210 20% 94%;
+    --sidebar-accent-foreground: 215 25% 17%;
+    --sidebar-border: 214 25% 88%;
+    --sidebar-ring: 239 60% 80%;
   }
 
   .dark {
