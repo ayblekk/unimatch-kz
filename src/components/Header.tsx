@@ -14,14 +14,14 @@ const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       className="sticky top-0 z-50 glass-card border-b border-border/50"
     >
-      <div className="container flex items-center justify-between h-16 px-4">
+      <div className="container flex items-center justify-between h-24 px-4">
         <div className="flex items-center gap-3">
           <img 
             src={logo} 
             alt="UniSelector KZ" 
-            className="h-10 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
-          <span className="text-lg font-bold text-foreground">{t.title}</span>
+          <span className="text-xl font-bold text-foreground">{t.title}</span>
         </div>
 
         <div className="flex items-center gap-3">
