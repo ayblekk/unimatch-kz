@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import HeroCard from '@/components/HeroCard';
 import FilterBar from '@/components/FilterBar';
 import ResultsSection from '@/components/ResultsSection';
+import UniversitiesSection from '@/components/UniversitiesSection';
 
 const IndexContent = () => {
   const [score, setScore] = useState(100);
@@ -106,7 +107,11 @@ const IndexContent = () => {
           onSearch={handleSearch}
           isLoading={isLoading}
         />
+      </main>
 
+      <UniversitiesSection />
+
+      <main className="container max-w-4xl mx-auto px-4 space-y-8">
         {hasSearched && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
