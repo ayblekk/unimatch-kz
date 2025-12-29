@@ -1,3 +1,5 @@
+import kaznuImage from '@/assets/universities/kaznu.jpg';
+
 export interface University {
   id: string;
   nameRu: string;
@@ -6,6 +8,7 @@ export interface University {
   type: 'national' | 'state' | 'private';
   minGrantScore: number;
   specialties: string[];
+  image?: string;
 }
 
 export const universities: University[] = [
@@ -16,7 +19,8 @@ export const universities: University[] = [
     city: 'Алматы',
     type: 'national',
     minGrantScore: 85,
-    specialties: ['IT & Engineering', 'Medicine', 'Law', 'Economics']
+    specialties: ['IT & Engineering', 'Medicine', 'Law', 'Economics'],
+    image: kaznuImage
   },
   {
     id: '2',
@@ -87,8 +91,7 @@ export const universityTranslations = {
   ru: {
     sectionTitle: 'Университеты Казахстана',
     sectionSubtitle: 'Полный каталог вузов с проходными баллами и специальностями',
-    minScore: 'Мин. балл на грант',
-    points: 'баллов',
+    grant: 'Грант: от',
     learnMore: 'Подробнее',
     national: 'Национальный',
     state: 'Государственный',
@@ -97,8 +100,7 @@ export const universityTranslations = {
   kz: {
     sectionTitle: 'Қазақстан университеттері',
     sectionSubtitle: 'Өту балдары мен мамандықтары бар жоғары оқу орындарының толық каталогы',
-    minScore: 'Грантқа мин. балл',
-    points: 'балл',
+    grant: 'Грант: ',
     learnMore: 'Толығырақ',
     national: 'Ұлттық',
     state: 'Мемлекеттік',
