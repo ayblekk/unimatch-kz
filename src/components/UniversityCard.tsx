@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, GraduationCap } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { University, universityTranslations } from '@/data/universities';
@@ -32,55 +32,60 @@ const UniversityCard = ({ university, index }: UniversityCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className="glass-card rounded-2xl p-5 flex flex-col gap-4 transition-shadow duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)]"
+      className="glass-card rounded-2xl overflow-hidden flex flex-col transition-shadow duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)]"
     >
-      {/* Header */}
-      <div className="flex items-start gap-3">
-        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-          <GraduationCap className="w-6 h-6 text-primary" />
-        </div>
-        <div className="min-w-0">
-          <h3 className="font-semibold text-foreground text-base leading-tight truncate">
-            {language === 'ru' ? university.nameRu : university.nameKz}
-          </h3>
-        </div>
+      {/* Cover Image */}
+      <div className="aspect-video w-full">
+        {university.image ? (
+          <img 
+            src={university.image} 
+            alt={language === 'ru' ? university.nameRu : university.nameKz}
+            className="h-48 w-full object-cover"
+          />
+        ) : (
+          <div className="h-48 w-full bg-gradient-to-br from-muted to-muted/50" />
+        )}
       </div>
 
-      {/* Info row */}
-      <div className="flex items-center gap-3 flex-wrap">
-        <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
-          <MapPin className="w-4 h-4" />
-          <span>{university.city}</span>
-        </div>
-        <Badge variant="outline" className={`text-xs ${typeColors[university.type]}`}>
-          {typeLabels[university.type]}
-        </Badge>
-      </div>
+      {/* Content */}
+      <div className="p-5 flex flex-col gap-4 flex-1">
+        {/* Title */}
+        <h3 className="font-semibold text-foreground text-base leading-tight line-clamp-2">
+          {language === 'ru' ? university.nameRu : university.nameKz}
+        </h3>
 
-      {/* Score badge */}
-      <div className="bg-success/10 border border-success/20 rounded-xl px-4 py-2.5">
-        <p className="text-success font-semibold text-sm">
-          {t.minScore}: от {university.minGrantScore} {t.points}
-        </p>
-      </div>
-
-      {/* Specialties */}
-      <div className="flex flex-wrap gap-1.5">
-        {university.specialties.map((specialty) => (
-          <Badge 
-            key={specialty} 
-            variant="secondary" 
-            className="text-xs font-normal"
-          >
-            {specialty}
+        {/* Info row with city, type and grant badge */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
+            <MapPin className="w-4 h-4" />
+            <span>{university.city}</span>
+          </div>
+          <Badge variant="outline" className={`text-xs ${typeColors[university.type]}`}>
+            {typeLabels[university.type]}
           </Badge>
-        ))}
-      </div>
+          <Badge variant="outline" className="text-xs bg-success/10 text-success border-success/20">
+            {t.grant} {university.minGrantScore}
+          </Badge>
+        </div>
 
-      {/* Button */}
-      <Button variant="outline" className="w-full mt-auto">
-        {t.learnMore}
-      </Button>
+        {/* Specialties */}
+        <div className="flex flex-wrap gap-1.5">
+          {university.specialties.map((specialty) => (
+            <Badge 
+              key={specialty} 
+              variant="secondary" 
+              className="text-xs font-normal"
+            >
+              {specialty}
+            </Badge>
+          ))}
+        </div>
+
+        {/* Button */}
+        <Button variant="outline" className="w-full mt-auto">
+          {t.learnMore}
+        </Button>
+      </div>
     </motion.div>
   );
 };
