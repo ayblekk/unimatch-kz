@@ -144,13 +144,11 @@ const IndexContent = () => {
           onSearch={handleSearch}
           isLoading={isLoading}
         />
-      </main>
 
-      <UniversitiesSection />
-
-      <main ref={resultsRef} className="container max-w-4xl mx-auto px-4 space-y-8">
+        {/* Results Section - appears after search, before Universities */}
         {hasSearched && (
           <motion.div
+            ref={resultsRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -172,6 +170,8 @@ const IndexContent = () => {
           </motion.div>
         )}
       </main>
+
+      <UniversitiesSection />
 
       {/* Footer */}
       <motion.footer
